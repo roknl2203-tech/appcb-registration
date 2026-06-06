@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>APPCB Competition Registration</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f2f2;
+}
+
+.container{
+width:400px;
+margin:auto;
+background:white;
+padding:20px;
+margin-top:30px;
+border-radius:10px;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin-top:10px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:green;
+color:white;
+border:none;
+margin-top:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>APPCB Competition Registration</h2>
+
+<form id="myForm">
+
+<input type="text" name="name" placeholder="Student Name" required>
+
+<input type="text" name="school" placeholder="School Name" required>
+
+<input type="text" name="classname" placeholder="Class" required>
+
+<input type="text" name="district" placeholder="District" required>
+
+<input type="text" name="mobile" placeholder="Mobile Number" required>
+
+<input type="email" name="email" placeholder="Email">
+
+<select name="competition">
+
+<option>Poster Making</option>
+
+<option>Drawing</option>
+
+<option>Photography</option>
+
+<option>Essay Writing</option>
+
+<option>Reels Competition</option>
+
+</select>
+
+<button type="submit">
+Submit Registration
+</button>
+
+</form>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+
+const scriptURL =
+"YOUR_WEBAPP_URL";
+
+document
+.getElementById("myForm")
+.addEventListener("submit", e => {
+
+e.preventDefault();
+
+fetch(scriptURL,{
+method:"POST",
+body:new FormData(e.target)
+})
+.then(res=>{
+
+document.getElementById("msg")
+.innerHTML="Registration Successful";
+
+e.target.reset();
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
