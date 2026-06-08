@@ -93,16 +93,17 @@ document
 e.preventDefault();
 
 fetch(scriptURL,{
-method:"POST",
-body:new FormData(e.target)
+  method:"POST",
+  body:new FormData(e.target)
 })
-.then(res=>{
-
-document.getElementById("msg")
-.innerHTML="Registration Successful";
-
-e.target.reset();
-
+.then(response => {
+  document.getElementById("msg").innerHTML =
+  "Registration Successful";
+  document.getElementById("myForm").reset();
+})
+.catch(error => {
+  document.getElementById("msg").innerHTML =
+  "Error: " + error;
 });
 
 });
