@@ -101,10 +101,18 @@ fetch(scriptURL,{method:"POST",body:new FormData(this)})
 if(data.status === "success"){
 
 document.getElementById("msg").innerHTML =
-"✅ Registration Successful<br><br>" +
-"Registration Number: <b>" +
-data.registrationNumber +
-"</b>";
+`
+<div style="background:#e8fff0;
+padding:15px;
+border-radius:10px;
+margin-top:15px;
+font-weight:bold;
+color:green;">
+✅ Registration Successful<br><br>
+Registration Number:
+${data.registrationNumber}
+</div>
+`;
 
 form.reset();
 
