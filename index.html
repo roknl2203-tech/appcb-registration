@@ -8,14 +8,28 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
 body{background:#f4f8f4}
-.banner img{width:100%;display:block}
+.banner img{
+width:100%;
+max-height:650px;
+object-fit:cover;
+display:block;
+}
 .wrap{max-width:1200px;margin:auto;padding:20px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.grid{
+display:block;
+max-width:700px;
+margin:auto;
+}
 .panel,.form{background:#fff;border-radius:16px;padding:25px;box-shadow:0 4px 18px rgba(0,0,0,.1)}
 .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}
 .card{background:#eef8ee;padding:10px;border-radius:10px;text-align:center;font-weight:600}
 input,select{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
-button{width:100%;padding:14px;background:#0b7a0b;color:#fff;border:none;border-radius:10px;font-size:16px}
+button{
+background:linear-gradient(90deg,#0b7a0b,#16a34a);
+font-size:18px;
+font-weight:700;
+padding:15px;
+}
 #msg{margin-top:10px;font-weight:600}
 footer{background:#0b7a0b;color:#fff;text-align:center;padding:20px;margin-top:30px}
 @media(max-width:800px){.grid{grid-template-columns:1fr}}
@@ -31,6 +45,9 @@ footer{background:#0b7a0b;color:#fff;text-align:center;padding:20px;margin-top:3
 <div class="grid">
 <div class="panel">
 <h2>School & College Competitions</h2>
+  <h2 style="text-align:center;color:#0b7a0b;margin-bottom:20px;">
+Available Competitions
+</h2>
 <p>Participate in APPCB World Environment Day 2026 competitions.</p>
 <div class="cards">
 <div class="card">Poster & Drawing</div>
@@ -78,7 +95,9 @@ document.getElementById("myForm").addEventListener("submit",function(e){
 e.preventDefault();
 document.getElementById("msg").innerHTML="Submitting...";
 fetch(scriptURL,{method:"POST",body:new FormData(this)})
-.then(()=>{document.getElementById("msg").innerHTML="✅ Registration Successful";this.reset();})
+.then(()=>{alert(
+"Registration Successful!\n\nThank you for participating in APPCB World Environment Day 2026 Competitions."
+);this.reset();})
 .catch(()=>{document.getElementById("msg").innerHTML="❌ Submission Failed";});
 });
 </script>
