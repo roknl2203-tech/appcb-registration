@@ -95,10 +95,26 @@ document.getElementById("myForm").addEventListener("submit",function(e){
 e.preventDefault();
 document.getElementById("msg").innerHTML="Submitting...";
 fetch(scriptURL,{method:"POST",body:new FormData(this)})
-.then(()=>{alert(
-"Registration Successful!\n\nThank you for participating in APPCB World Environment Day 2026 Competitions."
-);this.reset();})
-.catch(()=>{document.getElementById("msg").innerHTML="❌ Submission Failed";});
+.then(response => response.json())
+.then(data => {
+
+if(data.status === "success"){
+
+document.getElementById("msg").innerHTML =
+"✅ Registration Successful<br><br>" +
+"Registration Number: <b>" +
+data.registrationNumber +
+"</b>";
+
+form.reset();
+
+}else{
+
+document.getElementById("msg").innerHTML =
+"❌ " + data.message;
+
+}
+
 });
 </script>
 
