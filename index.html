@@ -90,27 +90,60 @@ Available Competitions
 <footer>Andhra Pradesh Pollution Control Board - Regional Office Kurnool</footer>
 
 <script>
-const scriptURL="https://script.google.com/macros/s/AKfycbzJRNqXocZXxEZQrThS0ZvvBoPca6siZST-7h7yZ_PLxWictbRmunQJwURn859WELNo/exec";
-document.getElementById("myForm").addEventListener("submit",function(e){
+
+const scriptURL =
+"https://script.google.com/macros/s/AKfycbzJRNqXocZXxEZQrThS0ZvvBoPca6siZST-7h7yZ_PLxWictbRmunQJwURn859WELNo/exec";
+
+const form = document.getElementById("myForm");
+
+form.addEventListener("submit", function(e){
+
 e.preventDefault();
-document.getElementById("msg").innerHTML="Submitting...";
-fetch(scriptURL,{method:"POST",body:new FormData(this)})
+
+document.getElementById("msg").innerHTML =
+"Submitting... Please wait...";
+
+fetch(scriptURL,{
+method:"POST",
+body:new FormData(form)
+})
+
 .then(response => response.json())
+
 .then(data => {
 
 if(data.status === "success"){
 
 document.getElementById("msg").innerHTML =
+
 `
-<div style="background:#e8fff0;
+<div style="
+background:#e8fff0;
 padding:15px;
 border-radius:10px;
 margin-top:15px;
 font-weight:bold;
-color:green;">
+color:green;
+text-align:center;">
+
 ✅ Registration Successful<br><br>
-Registration Number:
-${data.registrationNumber}
+
+Registration Number:<br>
+<b>${data.registrationNumber}</b>
+
+<br><br>
+
+<a href="submission.html"
+style="
+display:inline-block;
+padding:12px 25px;
+background:#0b7a0b;
+color:white;
+text-decoration:none;
+border-radius:8px;">
+Proceed to Submission Portal
+</a>
+
 </div>
 `;
 
@@ -123,8 +156,19 @@ document.getElementById("msg").innerHTML =
 
 }
 
-});
-</script>
+})
 
+.catch(error => {
+
+document.getElementById("msg").innerHTML =
+"❌ Submission Failed. Please try again.";
+
+console.error(error);
+
+});
+
+});
+
+</script>
 </body>
 </html>
